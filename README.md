@@ -1,7 +1,7 @@
 # Geometric Fractals In Maya
 ## take a base object and make copies of it, link translation, rotation and scale (Transform)
 
-### Based on blender array modifiers: http://wiki.blender.org/index.php/Doc:2.6/Manual/Modifiers/Generate/Array
+### Based on blender array modifiers
 
 #### Branching Arrays
 Run nBranches.py in Maya python script editor (Windows -> General Editors -> Script Editor) to load he commands to make a tree with nBranches at each node.
