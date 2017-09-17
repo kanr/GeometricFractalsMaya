@@ -4,7 +4,7 @@
 ### Based on blender array modifiers
 
 #### Branching Arrays
-1, Run nBranches.py in Maya python script editor (Windows -> General Editors -> Script Editor) to load the commands for making a tree with nBranches at each node.
+1. Run nBranches.py in Maya python script editor (Windows -> General Editors -> Script Editor) to load the commands for making a tree with nBranches at each node.
 2. Next type  ```makeArray()``` in the Python Command line (defautl is MEL). ```makeArray()``` with no inputs will make a cube-base object and a binary tree structure seven levels deep. 
 3. If an object is selected before running makeArray, that object will be the base-object. 
 4. Optional inputs are the number of branches and the depth of the tree. With the base object selected, running the prune() command will remove the last generation. 
