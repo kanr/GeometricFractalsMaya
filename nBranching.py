@@ -2,7 +2,7 @@ import maya.cmds as cmds
 """
 Josh Lopez-Binder May 2015
 Make a geometric branching fractal with "residue"
-Run script in Maya. Then select base-object and run MakeArray(<nLevels>) in Python Command Line. Move around the 
+Run script in Maya. Then select base-object and run MakeArray(<nLevels>) in Python Command Line. Move around the
 two children of the root node. Try scaling them by about 0.5 to get not-self-intersecting
 patterns.
 
@@ -17,8 +17,9 @@ finalGen = []
 
 
 def makeArray(nBranch=2,nLevels=7):
-    """Run this command to make branching structure """ 
+    """Run this command to make branching structure """
     selected = cmds.ls(sl=1)
+    #If User has nothing selected, create a 1x1x1 polycube
     if len(selected) == 0:
         baseObj = cmds.polyCube(w=1,d=1,h=1)[0]
     else:
@@ -28,15 +29,15 @@ def makeArray(nBranch=2,nLevels=7):
     makeTree(baseObj,baseObj,nBranch,nLevels,1,finalGen)
     return finalGen
 
-def makeTree(parentObj,parentList,nBranch,maxDepth,currDepth,finalGen):      
-    
+def makeTree(parentObj,parentList,nBranch,maxDepth,currDepth,finalGen):
+
     if currDepth >= maxDepth:
         finalGen.append(parentObj)
         return
     else:
-        newGen = makeNChildren(nBranch,parentObj,parentList,currDepth!=1) 
+        newGen = makeNChildren(nBranch,parentObj,parentList,currDepth!=1)
         currDepth = currDepth+1
-        
+
         for i in xrange(nBranch):
             obj = newGen[i]
             makeTree(obj,newGen,nBranch,maxDepth,currDepth,finalGen)
@@ -66,7 +67,7 @@ def makeNChildren(nChildren,parentObj,parentList,makeCon=True):
 
 
 def grow(generation=None,nBranch=3):
-    """run the function with the root node selected to add another level 
+    """run the function with the root node selected to add another level
     to the structure"""
     if generation==None:
         generation=getFinalGen(cmds.ls(sl=1)[0])
@@ -127,9 +128,9 @@ def connectAttrs(newObj,oldObj):
     #r = str(0.7)
     for attr in attrs:
         #if attr=='translateX':
-        #    #scale translateX
-        #    cmds.expression(s = newObj+'.' +attr+ ' = ' + r + '*' + oldObj+'.' +attr)
-        #else:
+            #scale translateX
+            #cmds.expression(s = newObj+'.' +attr+ ' = ' + r + '*' + oldObj+'.' +attr)
+        else:
         cmds.expression(s = newObj+'.' +attr+ ' = ' + oldObj+'.' +attr)
 
 def tests():
@@ -160,7 +161,7 @@ def tests():
 
     print "TEST getParentGen"
     assert [u'pCube4',u'pCube5']== getParentGen("pCube6")
-    print cmds.listRelatives("pCube2",typ="transform",c=True) 
+    print cmds.listRelatives("pCube2",typ="transform",c=True)
     print "Passed getParentGen Test!\n"
 
     print "TEST prune"
